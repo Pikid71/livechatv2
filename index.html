@@ -1,0 +1,2437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Black Hole CHAT V2 🕳️✨</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23ff44aa' opacity='0.3'/><path d='M30 50 Q50 70 70 50' stroke='%23ff44aa' stroke-width='3' fill='none' stroke-linecap='round' opacity='0.7'/><text x='50' y='80' font-size='14' text-anchor='middle' fill='white'>V2</text></svg>">
+    <style>
+        /* ========== GLOBAL STYLES ========== */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Segoe UI', 'Courier New', monospace, sans-serif;
+        }
+        
+        body { 
+            background: radial-gradient(circle at 20% 30%, #0a0a0a 0%, #1a0a2e 100%);
+            color: white; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            padding: 20px;
+            min-height: 100vh;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* ========== THEME VARIABLES ========== */
+        body[data-theme="default"] {
+            background: radial-gradient(circle at 20% 30%, #0a0a0a 0%, #1a0a2e 100%);
+        }
+        body[data-theme="dark"] {
+            background: #0a0a0a;
+        }
+        body[data-theme="light"] {
+            background: #f0f0f0;
+            color: #222;
+        }
+        body[data-theme="neon"] {
+            background: #000;
+            color: #0ff;
+        }
+        body[data-theme="midnight"] {
+            background: linear-gradient(135deg, #0b0b2b 0%, #1a1a3a 100%);
+        }
+        body[data-theme="sunset"] {
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+        }
+        body[data-theme="forest"] {
+            background: linear-gradient(135deg, #134e5e 0%, #71b280 100%);
+        }
+        body[data-theme="ocean"] {
+            background: linear-gradient(135deg, #2193b0 0%, #6dd5ed 100%);
+        }
+        body[data-theme="cyberpunk"] {
+            background: linear-gradient(135deg, #ff0099 0%, #493240 100%);
+        }
+        body[data-theme="vintage"] {
+            background: #f4e4c1;
+            color: #5d3a1a;
+        }
+        body[data-theme="Black Hole"] {
+            background: linear-gradient(135deg, #360033 0%, #0b8793 100%);
+        }
+
+        /* ========== EFFECT STYLES ========== */
+        body.glitch {
+            animation: glitch 0.3s infinite;
+        }
+        @keyframes glitch {
+            0% { transform: translate(0); filter: hue-rotate(0deg); }
+            20% { transform: translate(-5px, 3px); filter: hue-rotate(90deg); }
+            40% { transform: translate(5px, -3px); filter: hue-rotate(180deg); }
+            60% { transform: translate(-3px, 5px); filter: hue-rotate(270deg); }
+            80% { transform: translate(3px, -5px); filter: hue-rotate(360deg); }
+            100% { transform: translate(0); filter: hue-rotate(0deg); }
+        }
+
+        body.flashbang {
+            background: white !important;
+            transition: background 0.1s;
+        }
+        body.flashbang #chat-container {
+            background: white !important;
+            color: black !important;
+        }
+
+        body.black {
+            background: black !important;
+        }
+        body.black #chat-container {
+            opacity: 0.8;
+        }
+
+        body.hack {
+            background: black !important;
+            color: #00ff00 !important;
+            font-family: 'Courier New', monospace !important;
+        }
+        body.hack .msg {
+            font-family: 'Courier New', monospace !important;
+            color: #00ff00 !important;
+            background: #001100 !important;
+            border: 1px solid #00ff00 !important;
+            text-shadow: 0 0 5px #00ff00;
+        }
+        body.hack .header {
+            background: #001100 !important;
+            border-bottom: 2px solid #00ff00 !important;
+        }
+
+        body.matrix {
+            background: black !important;
+            position: relative;
+        }
+        body.matrix::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, rgba(0,255,0,0.1) 0px, rgba(0,255,0,0.1) 2px, transparent 2px, transparent 4px);
+            pointer-events: none;
+            animation: matrix 20s linear infinite;
+        }
+        @keyframes matrix {
+            from { background-position: 0 0; }
+            to { background-position: 0 100%; }
+        }
+
+        body.rainbow {
+            animation: rainbow-bg 3s linear infinite;
+        }
+        @keyframes rainbow-bg {
+            0% { background: #ff0000; }
+            17% { background: #ff8800; }
+            33% { background: #ffff00; }
+            50% { background: #00ff00; }
+            67% { background: #0088ff; }
+            83% { background: #8800ff; }
+            100% { background: #ff0000; }
+        }
+
+        body.neon {
+            animation: neon-pulse 1s ease-in-out infinite alternate;
+        }
+        @keyframes neon-pulse {
+            from { box-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff; }
+            to { box-shadow: 0 0 20px #f0f, 0 0 40px #f0f, 0 0 60px #f0f; }
+        }
+
+        body.firework::after {
+            content: "🎆 🎇 ✨";
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 100px;
+            animation: firework 2s ease-out;
+            pointer-events: none;
+        }
+        @keyframes firework {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.5); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(2); }
+        }
+
+        body.gameroom {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        body.gameroom #chat-container {
+            border: 4px solid #ffd700;
+            box-shadow: 0 0 30px #ffd700;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            animation: confetti-fall 3s ease-out forwards;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* ========== RANK BADGES ========== */
+        .rank-owner {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+            margin-left: 6px;
+            border: 1px solid #fff;
+            box-shadow: 0 0 10px #FFD700;
+        }
+        .rank-admin {
+            background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+            margin-left: 6px;
+        }
+        .rank-moderator {
+            background: linear-gradient(135deg, #ff9933 0%, #ff6600 100%);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+            margin-left: 6px;
+        }
+        .rank-vip {
+            background: linear-gradient(135deg, #9933ff 0%, #6600cc 100%);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+            margin-left: 6px;
+        }
+        .rank-member {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+            margin-left: 6px;
+        }
+
+        /* ========== CHAT CONTAINER ========== */
+        #chat-container { 
+            width: 100%;
+            max-width: 800px;
+            height: 95vh;
+            background: rgba(15, 15, 30, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px; 
+            overflow: hidden; 
+            border: 2px solid rgba(255, 68, 170, 0.5);
+            box-shadow: 0 20px 80px rgba(0,0,0,0.8), inset 0 0 30px rgba(255, 68, 170, 0.1);
+            display: flex;
+            flex-direction: column;
+            animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ========== HEADER ========== */
+        .header {
+            background: linear-gradient(135deg, #ff44aa 0%, #aa44ff 100%);
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid rgba(255, 68, 170, 0.5);
+            box-shadow: 0 5px 20px rgba(255, 68, 170, 0.3);
+            flex-shrink: 0;
+        }
+
+        .header h1 { 
+            font-size: 22px; 
+            font-weight: 700; 
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .user-info { 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+            font-size: 14px; 
+            background: rgba(0,0,0,0.3);
+            padding: 8px 16px;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .status-dot { 
+            width: 10px; 
+            height: 10px; 
+            background: #4ade80; 
+            border-radius: 50%; 
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 10px #4ade80;
+        }
+
+        @keyframes pulse { 
+            0%, 100% { opacity: 1; box-shadow: 0 0 10px #4ade80; } 
+            50% { opacity: 0.5; box-shadow: 0 0 5px #4ade80; } 
+        }
+
+        /* ========== MESSAGES AREA ========== */
+        #messages { 
+            flex: 1;
+            overflow-y: auto; 
+            padding: 24px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 16px;
+            background: rgba(10, 10, 24, 0.8);
+            scroll-behavior: smooth;
+        }
+
+        .msg-wrapper { 
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .msg-wrapper.mine {
+            align-items: flex-end;
+        }
+
+        .msg-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+            font-size: 12px;
+        }
+
+        .msg-username {
+            font-weight: 700;
+            color: #ff99cc;
+            letter-spacing: 0.5px;
+            text-shadow: 0 0 5px rgba(255,105,180,0.5);
+        }
+
+        .msg-timestamp {
+            color: #888;
+            font-size: 10px;
+        }
+
+        .msg { 
+            background: rgba(74, 74, 94, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 12px 18px; 
+            border-radius: 18px; 
+            max-width: 80%;
+            word-wrap: break-word;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.2s;
+            color: #fff;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .msg:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 68, 170, 0.3);
+        }
+
+        .msg.mine { 
+            background: linear-gradient(135deg, #ff44aa 0%, #aa44ff 100%);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .msg.system {
+            background: rgba(42, 42, 62, 0.9);
+            border: 1px solid #ff44aa;
+            color: #ffb3e6;
+            font-style: italic;
+            align-self: center;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        .msg.private {
+            background: rgba(128, 0, 128, 0.3);
+            border-left: 4px solid #ff44aa;
+        }
+
+        .msg.file-share {
+            background: rgba(0, 128, 128, 0.3);
+            border-left: 4px solid #00ffff;
+            cursor: pointer;
+        }
+
+        .msg.file-share:hover {
+            background: rgba(0, 128, 128, 0.5);
+        }
+
+        .file-icon {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .file-name {
+            font-weight: bold;
+            color: #00ffff;
+        }
+
+        .file-size {
+            font-size: 11px;
+            color: #aaa;
+        }
+
+        /* ========== INPUT AREA ========== */
+        #input-area { 
+            padding: 20px; 
+            background: rgba(17, 17, 17, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 2px solid #ff44aa;
+            flex-shrink: 0;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        #messageInput { 
+            flex: 1;
+            background: rgba(51, 51, 51, 0.8); 
+            border: 2px solid #444;
+            padding: 14px 18px; 
+            color: white; 
+            border-radius: 30px; 
+            outline: none;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        #messageInput:focus { 
+            border-color: #ff44aa; 
+            box-shadow: 0 0 0 4px rgba(255, 68, 170, 0.2);
+            background: rgba(51, 51, 51, 0.95);
+        }
+
+        .action-btn {
+            background: rgba(255, 68, 170, 0.2);
+            border: 2px solid #ff44aa;
+            padding: 12px 18px;
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .action-btn:hover {
+            background: #ff44aa;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 68, 170, 0.4);
+        }
+
+        .action-btn.danger {
+            background: rgba(192, 57, 43, 0.2);
+            border-color: #c0392b;
+        }
+
+        .action-btn.danger:hover {
+            background: #c0392b;
+        }
+
+        .action-btn.success {
+            background: rgba(46, 204, 113, 0.2);
+            border-color: #2ecc71;
+        }
+
+        .action-btn.success:hover {
+            background: #2ecc71;
+        }
+
+        /* ========== EMOJI PANEL ========== */
+        .emoji-panel {
+            background: rgba(26, 26, 62, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            border-radius: 16px;
+            border: 1px solid #ff44aa;
+            display: none;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 12px;
+        }
+
+        .emoji-panel.show { 
+            display: grid; 
+        }
+
+        .emoji-item {
+            font-size: 28px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 12px;
+            transition: all 0.2s;
+            text-align: center;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .emoji-item:hover { 
+            background: rgba(255, 68, 170, 0.4); 
+            transform: scale(1.3) rotate(10deg);
+        }
+
+        /* ========== MODALS ========== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1a2e;
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid #ff44aa;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: scaleIn 0.3s ease-out;
+            box-shadow: 0 0 30px rgba(255,68,170,0.3);
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ff44aa;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+
+        .modal-body {
+            color: #fff;
+        }
+
+        .user-list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #333;
+            transition: all 0.2s;
+        }
+
+        .user-list-item:hover {
+            background: rgba(255, 68, 170, 0.1);
+        }
+
+        .user-info-modal {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .user-rank-badge {
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 12px;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        /* ========== ROOMS LIST ========== */
+        #room-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+            background: rgba(15, 15, 15, 0.95);
+        }
+
+        .room-card {
+            background: rgba(34, 34, 34, 0.8);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid #444;
+            margin-bottom: 16px;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .room-card:hover {
+            border-color: #ff44aa;
+            transform: translateX(5px);
+            background: rgba(34, 34, 34, 0.95);
+        }
+
+        .room-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .room-name {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .room-stats {
+            display: flex;
+            gap: 16px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .room-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* ========== VOICE CHAT ========== */
+        .voice-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(46, 204, 113, 0.2);
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin-left: 12px;
+            border: 1px solid #2ecc71;
+        }
+
+        .voice-wave {
+            display: flex;
+            gap: 3px;
+        }
+
+        .voice-wave span {
+            width: 4px;
+            height: 4px;
+            background: #2ecc71;
+            border-radius: 2px;
+            animation: wave 1s infinite;
+        }
+
+        .voice-wave span:nth-child(2) { animation-delay: 0.2s; }
+        .voice-wave span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes wave {
+            0%, 100% { height: 4px; }
+            50% { height: 12px; }
+        }
+
+        /* ========== SCROLLBARS ========== */
+        #messages::-webkit-scrollbar,
+        #room-content::-webkit-scrollbar,
+        .modal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        #messages::-webkit-scrollbar-track,
+        #room-content::-webkit-scrollbar-track,
+        .modal-content::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.3);
+            border-radius: 4px;
+        }
+        #messages::-webkit-scrollbar-thumb,
+        #room-content::-webkit-scrollbar-thumb,
+        .modal-content::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, #ff44aa, #aa44ff);
+            border-radius: 4px;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            #chat-container { height: 98vh; border-radius: 16px; }
+            .msg { max-width: 90%; }
+            .header h1 { font-size: 18px; }
+            .user-info { padding: 6px 12px; }
+            .action-btn span { display: none; }
+        }
+
+        /* ========== ANIMATIONS ========== */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .shake {
+            animation: shake 0.3s ease-in-out;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 8px 12px;
+            background: rgba(255, 68, 170, 0.1);
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #ff44aa;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+            30% { transform: translateY(-10px); opacity: 1; }
+        }
+
+        /* ========== TIMESTAMP STYLES ========== */
+        .timestamp-badge {
+            font-size: 10px;
+            color: rgba(255,255,255,0.6);
+            margin-left: 8px;
+            font-weight: normal;
+        }
+        
+        .mine .timestamp-badge {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .system .timestamp-badge {
+            color: #ffb3e6;
+        }
+    </style>
+</head>
+<body data-theme="Black Hole">
+    <div id="chat-container">
+        <!-- ========== AUTH SCREEN ========== -->
+        <div id="auth-screen" style="display: flex; flex-direction: column; height: 100%;">
+            <div class="header">
+                <h1>🕳️ Black Hole CHAT V2</h1>
+                <div style="font-size: 14px; opacity: 0.9;">⚡ THE NEXT GENERATION</div>
+            </div>
+            
+            <div style="flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; background: rgba(15,15,15,0.95);">
+                <div style="width: 100%; max-width: 400px;">
+                    <!-- Login Form -->
+                    <div id="loginForm" style="background: rgba(34,34,34,0.8); backdrop-filter: blur(10px); padding: 30px; border-radius: 20px; border: 1px solid #ff44aa; margin-bottom: 15px;">
+                        <div style="font-weight: bold; margin-bottom: 20px; font-size: 18px; color: #fff; text-align: center;">🔐 LOGIN TO Black Hole</div>
+                        <div style="display: flex; flex-direction: column; gap: 15px;">
+                            <input id="loginUsername" placeholder="Username..." maxlength="30" style="background: rgba(51,51,51,0.8); border: 2px solid #444; padding: 14px 18px; color: white; border-radius: 30px; outline: none; font-size: 15px;" />
+                            <input id="loginPassword" placeholder="Password..." maxlength="30" type="password" style="background: rgba(51,51,51,0.8); border: 2px solid #444; padding: 14px 18px; color: white; border-radius: 30px; outline: none; font-size: 15px;" />
+                            <button onclick="handleLogin()" style="background: linear-gradient(135deg, #ff44aa 0%, #aa44ff 100%); border: none; padding: 14px; color: white; border-radius: 30px; font-weight: bold; cursor: pointer; margin-top: 5px; font-size: 16px;">🚀 ENTER Black Hole</button>
+                            <div style="text-align: center; color: #aaa; font-size: 14px;">New to Black Hole? <span onclick="switchToRegister()" style="cursor: pointer; color: #ff44aa; text-decoration: underline;">Create Account</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Register Form -->
+                    <div id="registerForm" style="display: none; background: rgba(34,34,34,0.8); backdrop-filter: blur(10px); padding: 30px; border-radius: 20px; border: 1px solid #ff44aa;">
+                        <div style="font-weight: bold; margin-bottom: 20px; font-size: 18px; color: #fff; text-align: center;">📝 JOIN Black Hole</div>
+                        <div style="display: flex; flex-direction: column; gap: 15px;">
+                            <input id="regUsername" placeholder="Choose username..." maxlength="30" style="background: rgba(51,51,51,0.8); border: 2px solid #444; padding: 14px 18px; color: white; border-radius: 30px; outline: none; font-size: 15px;" />
+                            <input id="regPassword" placeholder="Choose password..." maxlength="30" type="password" style="background: rgba(51,51,51,0.8); border: 2px solid #444; padding: 14px 18px; color: white; border-radius: 30px; outline: none; font-size: 15px;" />
+                            <input id="regConfirmPassword" placeholder="Confirm password..." maxlength="30" type="password" style="background: rgba(51,51,51,0.8); border: 2px solid #444; padding: 14px 18px; color: white; border-radius: 30px; outline: none; font-size: 15px;" />
+                            <button onclick="handleRegister()" style="background: linear-gradient(135deg, #ff44aa 0%, #aa44ff 100%); border: none; padding: 14px; color: white; border-radius: 30px; font-weight: bold; cursor: pointer; margin-top: 5px; font-size: 16px;">✨ REGISTER</button>
+                            <div style="text-align: center; color: #aaa; font-size: 14px;">Already have an account? <span onclick="switchToLogin()" style="cursor: pointer; color: #ff44aa; text-decoration: underline;">Login</span></div>
+                        </div>
+                    </div>
+                    
+                    <div id="authMessage" style="text-align: center; color: #ff6b6b; margin-top: 20px; font-size: 14px; display: none;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== ROOM SELECTION SCREEN ========== -->
+        <div id="room-screen" style="display: none; flex-direction: column; height: 100%;">
+            <div class="header" style="justify-content: space-between;">
+                <h1>🕳️ Black Hole <span id="rank-indicator-header" style="display: none;"></span></h1>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div class="user-info">
+                        <span class="status-dot"></span>
+                        <span id="loggedInUsername">User</span>
+                        <span id="rank-badge-header" style="display: none;"></span>
+                    </div>
+                    <button onclick="handleLogout()" class="action-btn danger" style="padding: 8px 16px;">
+                        <span>🚪</span> EXIT
+                    </button>
+                </div>
+            </div>
+            
+            <div id="room-content">
+                <!-- Create Room Section -->
+                <div class="room-card">
+                    <div style="font-weight: bold; margin-bottom: 16px; font-size: 16px; color: #ff99cc;">🏗️ CREATE Black Hole ROOM</div>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <input id="newRoomName" placeholder="Room name..." maxlength="30" style="background: rgba(51,51,51,0.8); border: 2px solid #444; padding: 12px 16px; color: white; border-radius: 30px; outline: none; font-size: 14px;" />
+                        <input id="newRoomPassword" placeholder="Password (optional)..." maxlength="30" type="password" style="background: rgba(51,51,51,0.8); border: 2px solid #444; padding: 12px 16px; color: white; border-radius: 30px; outline: none; font-size: 14px;" />
+                        <select id="roomTheme" style="background: rgba(51,51,51,0.8); border: 2px solid #444; padding: 12px 16px; color: white; border-radius: 30px; outline: none; font-size: 14px;">
+                            <option value="Black Hole">Black Hole (Default)</option>
+                            <option value="dark">Dark</option>
+                            <option value="neon">Neon</option>
+                            <option value="midnight">Midnight</option>
+                            <option value="cyberpunk">Cyberpunk</option>
+                            <option value="ocean">Ocean</option>
+                        </select>
+                        <button onclick="createRoom()" class="action-btn success" style="width: 100%;">
+                            <span>✨</span> CREATE ROOM
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Available Rooms Section -->
+                <div>
+                    <div style="font-weight: bold; margin-bottom: 16px; font-size: 16px; color: #ff99cc;">📋 ACTIVE Black Hole ROOMS</div>
+                    <div id="rooms-list" style="display: flex; flex-direction: column; gap: 12px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== CHAT SCREEN ========== -->
+        <div id="chat-screen" style="display: none; flex-direction: column; height: 100%;">
+            <div class="header">
+                <div>
+                    <h1 style="margin-bottom: 4px;">
+                        🕳️ <span id="current-room">Room</span>
+                        <span id="voice-indicator" class="voice-indicator" style="display: none;">
+                            <span>🎤</span>
+                            <div class="voice-wave">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </span>
+                    </h1>
+                    <div style="font-size: 13px; opacity: 0.8; display: flex; align-items: center; gap: 10px;">
+                        <span><span id="members-count">0</span> members</span>
+                        <span id="room-theme-indicator" style="background: rgba(255,255,255,0.1); padding: 4px 8px; border-radius: 12px;">🎨 Black Hole</span>
+                    </div>
+                </div>
+                <div class="user-info">
+                    <span class="status-dot"></span>
+                    <span id="username-display">User</span>
+                    <span id="rank-badge-chat" style="display: none;"></span>
+                </div>
+            </div>
+            
+            <div id="messages"></div>
+            
+            <div id="input-area">
+                <!-- Voice Chat Controls -->
+                <div style="display: flex; gap: 10px; margin-bottom: 12px;" id="voice-controls">
+                    <button onclick="toggleVoiceChat()" id="voiceBtn" class="action-btn" style="flex: 1;">
+                        <span>🎤</span> <span id="voiceBtnText">JOIN VOICE</span>
+                    </button>
+                    <button onclick="showUserList()" class="action-btn" style="flex: 1;">
+                        <span>👥</span> USERS
+                    </button>
+                    <button onclick="showFileUpload()" id="fileUploadBtn" class="action-btn" style="flex: 1; display: none;">
+                        <span>📁</span> SHARE
+                    </button>
+                </div>
+
+                <!-- Message Input -->
+                <div class="input-row">
+                    <input id="messageInput" placeholder="Type message... /help for commands" autocomplete="off">
+                    <button class="action-btn" onclick="toggleEmojiPanel()" title="Emoji">😊</button>
+                    <button onclick="sendMessage()" class="action-btn success" style="min-width: 80px;">
+                        <span>📤</span> SEND
+                    </button>
+                </div>
+                
+                <!-- Emoji Panel -->
+                <div class="emoji-panel" id="emojiPanel"></div>
+                
+                <!-- Room Actions -->
+                <div class="input-row" style="margin-top: 12px;">
+                    <button onclick="leaveRoom()" class="action-btn danger" style="flex: 1;">
+                        <span>🚪</span> LEAVE ROOM
+                    </button>
+                    <button onclick="showPrivateMessages()" class="action-btn" style="flex: 1;">
+                        <span>💌</span> PRIVATE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== MODALS ========== -->
+
+    <!-- User List Modal -->
+    <div id="userListModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">👥 Black Hole Members</div>
+                <button class="modal-close" onclick="closeModal('userListModal')">×</button>
+            </div>
+            <div class="modal-body" id="userListContent">
+                Loading...
+            </div>
+        </div>
+    </div>
+
+    <!-- Private Messages Modal -->
+    <div id="privateMessagesModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">💌 Black Hole Private Messages</div>
+                <button class="modal-close" onclick="closeModal('privateMessagesModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div style="margin-bottom: 20px;">
+                    <input type="text" id="pmRecipient" placeholder="Username..." style="width: 100%; background: rgba(51,51,51,0.8); border: 2px solid #444; padding: 12px; color: white; border-radius: 30px; margin-bottom: 10px;">
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="pmMessage" placeholder="Message..." style="flex: 1; background: rgba(51,51,51,0.8); border: 2px solid #444; padding: 12px; color: white; border-radius: 30px;">
+                        <button onclick="sendPrivateMessage()" class="action-btn success">SEND</button>
+                    </div>
+                </div>
+                <div id="privateMessagesList" style="max-height: 300px; overflow-y: auto;">
+                    Select a user to view messages
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- File Upload Modal -->
+    <div id="fileUploadModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">📁 Share to Black Hole</div>
+                <button class="modal-close" onclick="closeModal('fileUploadModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div style="border: 2px dashed #ff44aa; border-radius: 16px; padding: 30px; text-align: center; margin-bottom: 20px; cursor: pointer;" onclick="document.getElementById('fileInput').click()">
+                    <div style="font-size: 48px; margin-bottom: 10px;">📎</div>
+                    <div style="color: #ccc;">Click to upload or drag and drop</div>
+                    <div style="font-size: 12px; color: #888; margin-top: 10px;">Max size: 5MB (Images, PDF, TXT)</div>
+                </div>
+                <input type="file" id="fileInput" style="display: none;" onchange="handleFileSelect(this.files[0])">
+                <div id="filePreview" style="display: none; background: rgba(255,68,170,0.1); padding: 15px; border-radius: 12px; margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span id="fileIcon" style="font-size: 32px;">📄</span>
+                        <div style="flex: 1;">
+                            <div id="fileName" style="font-weight: bold;"></div>
+                            <div id="fileSize" style="font-size: 12px; color: #888;"></div>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="uploadFile()" class="action-btn success" style="width: 100%;" id="uploadBtn">UPLOAD TO Black Hole</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grant Rank Modal (Admin/Owner only) -->
+    <div id="grantRankModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">👑 Grant Black Hole Rank</div>
+                <button class="modal-close" onclick="closeModal('grantRankModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div style="margin-bottom: 20px;">
+                    <input type="text" id="grantUsername" placeholder="Username..." style="width: 100%; background: rgba(51,51,51,0.8); border: 2px solid #444; padding: 12px; color: white; border-radius: 30px; margin-bottom: 15px;">
+                    <select id="grantRankSelect" style="width: 100%; background: rgba(51,51,51,0.8); border: 2px solid #444; padding: 12px; color: white; border-radius: 30px; margin-bottom: 15px;">
+                        <option value="moderator">🛡️ Moderator</option>
+                        <option value="vip">⭐ VIP</option>
+                        <option value="member">👤 Member</option>
+                    </select>
+                    <input type="password" id="grantPassword" placeholder="Admin Password (if not owner)" style="width: 100%; background: rgba(51,51,51,0.8); border: 2px solid #444; padding: 12px; color: white; border-radius: 30px; margin-bottom: 15px;">
+                    <button onclick="grantRank()" class="action-btn success" style="width: 100%;">GRANT RANK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Selector Modal -->
+    <div id="themeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">🎨 Black Hole Theme Selector</div>
+                <button class="modal-close" onclick="closeModal('themeModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+                    <button onclick="changeTheme('Black Hole')" class="action-btn">Black Hole</button>
+                    <button onclick="changeTheme('dark')" class="action-btn">Dark</button>
+                    <button onclick="changeTheme('neon')" class="action-btn">Neon</button>
+                    <button onclick="changeTheme('midnight')" class="action-btn">Midnight</button>
+                    <button onclick="changeTheme('cyberpunk')" class="action-btn">Cyberpunk</button>
+                    <button onclick="changeTheme('ocean')" class="action-btn">Ocean</button>
+                    <button onclick="changeTheme('sunset')" class="action-btn">Sunset</button>
+                    <button onclick="changeTheme('forest')" class="action-btn">Forest</button>
+                    <button onclick="changeTheme('vintage')" class="action-btn">Vintage</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script>
+        // ========== Black Hole CHAT V2 - FULL CLIENT WITH TIMESTAMP FORMAT ==========
+        
+        // Socket.IO connection
+        const socket = io();
+        
+        // ========== GLOBAL VARIABLES ==========
+        let currentUsername = 'User';
+        let currentRoom = null;
+        let currentRank = 'member';
+        let currentTheme = 'Black Hole';
+        let isAdmin = false;
+        let isModerator = false;
+        let isVip = false;
+        let isOwner = false;
+        
+        // Voice chat
+        let voiceChat = null;
+        let isVoiceActive = false;
+        
+        // File upload
+        let selectedFile = null;
+        
+        // UI Elements
+        const msgContainer = document.getElementById('messages');
+        const input = document.getElementById('messageInput');
+        const emojiPanel = document.getElementById('emojiPanel');
+        const authScreen = document.getElementById('auth-screen');
+        const roomScreen = document.getElementById('room-screen');
+        const chatScreen = document.getElementById('chat-screen');
+        const roomsList = document.getElementById('rooms-list');
+        const usernameDisplay = document.getElementById('username-display');
+        const loggedInUsernameDisplay = document.getElementById('loggedInUsername');
+        const authMessage = document.getElementById('authMessage');
+        
+        // ========== EMOJIS ==========
+        const emojis = ['😀', '😂', '😍', '🥰', '😎', '🤔', '😢', '🎉', '👍', '❤️', '🔥', '✨', '🌟', '💯', '😱', '🤯', '🎊', '🎈', '🚀', '💪', '😘', '🙏', '👏', '🎵', '🍕', '🍔', '🍉', '🎮', '👾', '🤖', '👽', '💀', '👑', '⚡', '🌊', '🌈', '☄️', '🕳️', '🌀', '🎭', '🎪', '🎨', '💜', '🔮', '✨', '⭐', '🌟'];
+        
+        // Load emojis
+        emojis.forEach(emoji => {
+            const emojiItem = document.createElement('div');
+            emojiItem.className = 'emoji-item';
+            emojiItem.textContent = emoji;
+            emojiItem.onclick = () => {
+                input.value += emoji;
+                input.focus();
+            };
+            emojiPanel.appendChild(emojiItem);
+        });
+        
+        // ========== RANK UTILITIES ==========
+        function getRankBadge(rank) {
+            const rankMap = {
+                'owner': { class: 'rank-owner', text: 'OWNER' },
+                'admin': { class: 'rank-admin', text: 'ADMIN' },
+                'moderator': { class: 'rank-moderator', text: 'MOD' },
+                'vip': { class: 'rank-vip', text: 'VIP' },
+                'member': { class: 'rank-member', text: 'MEMBER' }
+            };
+            const rankInfo = rankMap[rank] || rankMap.member;
+            return `<span class="${rankInfo.class}">${rankInfo.text}</span>`;
+        }
+        
+        function updateRankUI(rank) {
+            currentRank = rank;
+            isOwner = rank === 'owner';
+            isAdmin = rank === 'admin' || rank === 'owner';
+            isModerator = rank === 'moderator' || rank === 'admin' || rank === 'owner';
+            isVip = rank === 'vip' || rank === 'moderator' || rank === 'admin' || rank === 'owner';
+            
+            // Update rank badges
+            const badgeHeader = document.getElementById('rank-badge-header');
+            const badgeChat = document.getElementById('rank-badge-chat');
+            const rankIndicator = document.getElementById('rank-indicator-header');
+            
+            if (badgeHeader) badgeHeader.innerHTML = getRankBadge(rank);
+            if (badgeChat) badgeChat.innerHTML = getRankBadge(rank);
+            if (rankIndicator) rankIndicator.innerHTML = getRankBadge(rank);
+            
+            // Show/hide file upload button based on rank
+            const fileUploadBtn = document.getElementById('fileUploadBtn');
+            if (fileUploadBtn) {
+                fileUploadBtn.style.display = isVip ? 'flex' : 'none';
+            }
+            
+            // Show grant rank button for admin/owner
+            if (isAdmin || isOwner) {
+                const header = document.querySelector('.header');
+                if (header && !document.getElementById('grantRankBtn')) {
+                    const grantBtn = document.createElement('button');
+                    grantBtn.id = 'grantRankBtn';
+                    grantBtn.className = 'action-btn success';
+                    grantBtn.style.padding = '8px 16px';
+                    grantBtn.innerHTML = '<span>👑</span> GRANT';
+                    grantBtn.onclick = () => showModal('grantRankModal');
+                    header.querySelector('.user-info').after(grantBtn);
+                }
+            }
+        }
+        
+        // ========== VOICE CHAT CLASS ==========
+        class VoiceChatHandler {
+            constructor(socket, roomName, username) {
+                this.socket = socket;
+                this.roomName = roomName;
+                this.username = username;
+                this.localStream = null;
+                this.peerConnections = {};
+                this.isActive = false;
+                
+                this.configuration = {
+                    iceServers: [
+                        { urls: 'stun:stun.l.google.com:19302' },
+                        { urls: 'stun:stun1.l.google.com:19302' }
+                    ]
+                };
+            }
+            
+            async start() {
+                try {
+                    this.localStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+                    this.isActive = true;
+                    
+                    this.socket.emit('join_voice', { roomName: this.roomName });
+                    
+                    this.socket.on('user_joined_voice', (data) => this.handleUserJoined(data));
+                    this.socket.on('voice_offer', (data) => this.handleVoiceOffer(data));
+                    this.socket.on('voice_answer', (data) => this.handleVoiceAnswer(data));
+                    this.socket.on('ice_candidate', (data) => this.handleIceCandidate(data));
+                    this.socket.on('user_left_voice', (data) => this.handleUserLeft(data));
+                    
+                    document.getElementById('voice-indicator').style.display = 'flex';
+                    document.getElementById('voiceBtnText').textContent = 'LEAVE VOICE';
+                    document.getElementById('voiceBtn').classList.add('danger');
+                    
+                    return true;
+                } catch (err) {
+                    console.error('Voice chat error:', err);
+                    alert('Could not access microphone. Please check permissions.');
+                    return false;
+                }
+            }
+            
+            stop() {
+                if (this.localStream) {
+                    this.localStream.getTracks().forEach(track => track.stop());
+                    this.localStream = null;
+                }
+                
+                Object.values(this.peerConnections).forEach(pc => pc.close());
+                this.peerConnections = {};
+                this.isActive = false;
+                
+                this.socket.emit('leave_voice', { roomName: this.roomName });
+                this.socket.off('user_joined_voice');
+                this.socket.off('voice_offer');
+                this.socket.off('voice_answer');
+                this.socket.off('ice_candidate');
+                this.socket.off('user_left_voice');
+                
+                document.getElementById('voice-indicator').style.display = 'none';
+                document.getElementById('voiceBtnText').textContent = 'JOIN VOICE';
+                document.getElementById('voiceBtn').classList.remove('danger');
+            }
+            
+            handleUserJoined(data) {
+                this.createPeerConnection(data.userId);
+            }
+            
+            handleUserLeft(data) {
+                if (this.peerConnections[data.userId]) {
+                    this.peerConnections[data.userId].close();
+                    delete this.peerConnections[data.userId];
+                }
+            }
+            
+            async createPeerConnection(targetId) {
+                const pc = new RTCPeerConnection(this.configuration);
+                this.peerConnections[targetId] = pc;
+                
+                this.localStream.getTracks().forEach(track => {
+                    pc.addTrack(track, this.localStream);
+                });
+                
+                pc.onicecandidate = (event) => {
+                    if (event.candidate) {
+                        this.socket.emit('ice_candidate', {
+                            target: targetId,
+                            candidate: event.candidate
+                        });
+                    }
+                };
+                
+                pc.ontrack = (event) => {
+                    const audio = document.createElement('audio');
+                    audio.srcObject = event.streams[0];
+                    audio.autoplay = true;
+                    audio.controls = false;
+                    document.body.appendChild(audio);
+                };
+                
+                const offer = await pc.createOffer();
+                await pc.setLocalDescription(offer);
+                
+                this.socket.emit('voice_offer', {
+                    target: targetId,
+                    offer: offer,
+                    roomName: this.roomName
+                });
+                
+                return pc;
+            }
+            
+            async handleVoiceOffer(data) {
+                const pc = new RTCPeerConnection(this.configuration);
+                this.peerConnections[data.from] = pc;
+                
+                this.localStream.getTracks().forEach(track => {
+                    pc.addTrack(track, this.localStream);
+                });
+                
+                pc.onicecandidate = (event) => {
+                    if (event.candidate) {
+                        this.socket.emit('ice_candidate', {
+                            target: data.from,
+                            candidate: event.candidate
+                        });
+                    }
+                };
+                
+                pc.ontrack = (event) => {
+                    const audio = document.createElement('audio');
+                    audio.srcObject = event.streams[0];
+                    audio.autoplay = true;
+                    audio.controls = false;
+                    document.body.appendChild(audio);
+                };
+                
+                await pc.setRemoteDescription(new RTCSessionDescription(data.offer));
+                const answer = await pc.createAnswer();
+                await pc.setLocalDescription(answer);
+                
+                this.socket.emit('voice_answer', {
+                    target: data.from,
+                    answer: answer
+                });
+            }
+            
+            async handleVoiceAnswer(data) {
+                const pc = this.peerConnections[data.from];
+                if (pc) {
+                    await pc.setRemoteDescription(new RTCSessionDescription(data.answer));
+                }
+            }
+            
+            handleIceCandidate(data) {
+                const pc = this.peerConnections[data.from];
+                if (pc) {
+                    pc.addIceCandidate(new RTCIceCandidate(data.candidate));
+                }
+            }
+        }
+        
+        // ========== VOICE CHAT CONTROLS ==========
+        async function toggleVoiceChat() {
+            if (!currentRoom) {
+                alert('Join a room first!');
+                return;
+            }
+            
+            if (!voiceChat || !isVoiceActive) {
+                voiceChat = new VoiceChatHandler(socket, currentRoom, currentUsername);
+                const success = await voiceChat.start();
+                if (success) {
+                    isVoiceActive = true;
+                    addSystemMessage('🎤 You joined voice chat');
+                }
+            } else {
+                voiceChat.stop();
+                isVoiceActive = false;
+                voiceChat = null;
+                addSystemMessage('🎤 You left voice chat');
+            }
+        }
+        
+        // ========== FILE UPLOAD ==========
+        function showFileUpload() {
+            if (!isVip) {
+                alert('❌ VIP+ only can share files');
+                return;
+            }
+            showModal('fileUploadModal');
+        }
+        
+        function handleFileSelect(file) {
+            if (!file) return;
+            
+            // Check file size (5MB limit)
+            if (file.size > 5 * 1024 * 1024) {
+                alert('File too large! Max 5MB');
+                return;
+            }
+            
+            // Check file type
+            const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'application/pdf', 'text/plain'];
+            if (!allowedTypes.includes(file.type)) {
+                alert('File type not allowed! Only images, PDFs, and text files.');
+                return;
+            }
+            
+            selectedFile = file;
+            
+            // Update preview
+            document.getElementById('fileIcon').textContent = 
+                file.type.startsWith('image/') ? '🖼️' : 
+                file.type === 'application/pdf' ? '📕' : '📄';
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('fileSize').textContent = 
+                file.size < 1024 ? `${file.size} B` :
+                file.size < 1024 * 1024 ? `${(file.size / 1024).toFixed(1)} KB` :
+                `${(file.size / (1024 * 1024)).toFixed(1)} MB`;
+            document.getElementById('filePreview').style.display = 'block';
+        }
+        
+        async function uploadFile() {
+            if (!selectedFile) {
+                alert('Please select a file');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+            formData.append('username', currentUsername);
+            formData.append('roomName', currentRoom);
+            
+            document.getElementById('uploadBtn').disabled = true;
+            document.getElementById('uploadBtn').innerHTML = '<span>⏳</span> UPLOADING...';
+            
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    socket.emit('share_file', {
+                        fileUrl: result.fileUrl,
+                        fileName: result.fileName,
+                        fileType: result.fileType
+                    });
+                    closeModal('fileUploadModal');
+                    addSystemMessage(`📁 File shared: ${result.fileName}`);
+                } else {
+                    alert('Upload failed: ' + result.error);
+                }
+            } catch (err) {
+                console.error('Upload error:', err);
+                alert('Upload failed!');
+            } finally {
+                document.getElementById('uploadBtn').disabled = false;
+                document.getElementById('uploadBtn').innerHTML = '<span>📤</span> UPLOAD TO Black Hole';
+                selectedFile = null;
+                document.getElementById('filePreview').style.display = 'none';
+            }
+        }
+        
+        // ========== AUTH UI ==========
+        function switchToRegister() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('registerForm').style.display = 'block';
+            authMessage.style.display = 'none';
+        }
+        
+        function switchToLogin() {
+            document.getElementById('registerForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+            authMessage.style.display = 'none';
+        }
+        
+        function showAuthMessage(msg, isError = true) {
+            authMessage.textContent = msg;
+            authMessage.style.color = isError ? '#ff6b6b' : '#4ade80';
+            authMessage.style.display = 'block';
+            setTimeout(() => {
+                authMessage.style.display = 'none';
+            }, 3000);
+        }
+        
+        // ========== AUTH HANDLERS ==========
+        function handleLogin() {
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            
+            if (!username || !password) {
+                showAuthMessage('Please enter both username and password');
+                return;
+            }
+            
+            socket.emit('login', { username, password });
+        }
+        
+        function handleRegister() {
+            const username = document.getElementById('regUsername').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+            
+            if (!username || !password || !confirmPassword) {
+                showAuthMessage('Please fill in all fields');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showAuthMessage('Passwords do not match');
+                return;
+            }
+            
+            socket.emit('register', { username, password });
+        }
+        
+        function handleLogout() {
+            if (currentRoom) {
+                socket.emit('leave_room');
+            }
+            if (isVoiceActive && voiceChat) {
+                voiceChat.stop();
+                isVoiceActive = false;
+            }
+            socket.emit('logout');
+            currentUsername = 'User';
+            currentRoom = null;
+            currentRank = 'member';
+            authScreen.style.display = 'flex';
+            roomScreen.style.display = 'none';
+            chatScreen.style.display = 'none';
+            switchToLogin();
+        }
+        
+        // ========== SOCKET AUTH EVENTS ==========
+        socket.on('auth_success', (data) => {
+            currentUsername = data.username;
+            updateRankUI(data.rank);
+            
+            loggedInUsernameDisplay.textContent = data.username;
+            usernameDisplay.textContent = data.username;
+            
+            showAuthMessage(data.message, false);
+            setTimeout(() => {
+                authScreen.style.display = 'none';
+                roomScreen.style.display = 'flex';
+                loadRooms();
+            }, 500);
+        });
+        
+        socket.on('auth_error', (data) => {
+            showAuthMessage(data.message);
+        });
+        
+        socket.on('logged_out', () => {
+            currentUsername = 'User';
+            currentRank = 'member';
+            authScreen.style.display = 'flex';
+            roomScreen.style.display = 'none';
+            chatScreen.style.display = 'none';
+            switchToLogin();
+        });
+        
+        socket.on('rank_changed', (data) => {
+            if (data.newRank) {
+                updateRankUI(data.newRank);
+                addSystemMessage(`👑 Your rank has been updated to ${data.newRank} by ${data.grantedBy}`);
+            }
+        });
+        
+        // ========== ROOMS ==========
+        function loadRooms() {
+            socket.emit('get_rooms');
+        }
+        
+        socket.on('rooms_list', (rooms) => {
+            roomsList.innerHTML = '';
+            if (rooms.length === 0) {
+                roomsList.innerHTML = '<div style="text-align: center; color: #666; padding: 20px;">No rooms available. Create one!</div>';
+                return;
+            }
+            rooms.forEach(room => {
+                const roomCard = document.createElement('div');
+                roomCard.className = 'room-card';
+                
+                roomCard.innerHTML = `
+                    <div class="room-header">
+                        <div class="room-name">
+                            <span>${room.isDefault ? '🏠' : '🚪'}</span>
+                            ${room.name}
+                            ${room.hasPassword ? '<span style="color: #ffd700;">🔒</span>' : ''}
+                            ${room.isDefault ? '<span class="rank-owner">DEFAULT</span>' : ''}
+                            <span style="font-size: 12px; color: #888; margin-left: 8px;">🎨 ${room.theme || 'Black Hole'}</span>
+                        </div>
+                        <div class="room-stats">
+                            <span>👥 ${room.members}</span>
+                        </div>
+                    </div>
+                    <div class="room-actions">
+                        <button onclick="joinRoom('${room.name}', '')" class="action-btn success" style="flex: 1;">
+                            <span>🚪</span> JOIN
+                        </button>
+                        ${!room.isDefault && (isAdmin || isOwner) ? `
+                            <button onclick="deleteRoom('${room.name}')" class="action-btn danger">
+                                <span>🗑️</span> DELETE
+                            </button>
+                        ` : ''}
+                    </div>
+                `;
+                
+                roomsList.appendChild(roomCard);
+            });
+        });
+        
+        function createRoom() {
+            const roomName = document.getElementById('newRoomName').value.trim();
+            const password = document.getElementById('newRoomPassword').value;
+            const theme = document.getElementById('roomTheme').value;
+            
+            if (!roomName) {
+                alert('Please enter a room name');
+                return;
+            }
+            
+            socket.emit('create_room', { roomName, password, theme });
+            document.getElementById('newRoomName').value = '';
+            document.getElementById('newRoomPassword').value = '';
+        }
+        
+        function joinRoom(roomName, password) {
+            currentRoom = roomName;
+            socket.emit('join_room', { roomName, password });
+        }
+        
+        function deleteRoom(roomName) {
+            if (isAdmin || isOwner) {
+                socket.emit('delete_room', { roomName, password: '' });
+            } else {
+                const password = prompt('Enter admin password:');
+                if (password) socket.emit('delete_room', { roomName, password });
+            }
+        }
+        
+        socket.on('room_created', () => loadRooms());
+        socket.on('room_deleted', () => loadRooms());
+        
+        socket.on('joined_room', (data) => {
+            currentRoom = data.roomName;
+            usernameDisplay.textContent = data.username;
+            document.getElementById('current-room').textContent = data.roomName;
+            document.getElementById('members-count').textContent = '1';
+            document.getElementById('room-theme-indicator').innerHTML = `🎨 ${data.theme || 'Black Hole'}`;
+            msgContainer.innerHTML = '';
+            roomScreen.style.display = 'none';
+            chatScreen.style.display = 'flex';
+            input.focus();
+            
+            // Apply room theme
+            changeTheme(data.theme || 'Black Hole');
+        });
+        
+        socket.on('room_history', (data) => {
+            msgContainer.innerHTML = '';
+            data.messages.forEach(msg => {
+                if (msg.isPrivate) {
+                    addPrivateMessage(msg.username, msg.message, msg.recipient, msg.timestamp);
+                } else if (msg.fileUrl) {
+                    addFileMessage(msg.username, msg.fileUrl, msg.fileName, msg.fileType);
+                } else {
+                    const displayName = `${msg.username} --${msg.timestamp || new Date().toLocaleTimeString()}`;
+                    addMessage(displayName, msg.message, msg.rank, false);
+                }
+            });
+        });
+        
+        socket.on('user_joined', (data) => {
+            document.getElementById('members-count').textContent = data.members;
+            addSystemMessage(`👋 ${data.username} (${data.rank || 'member'}) joined the Black Hole`);
+        });
+        
+        socket.on('user_left', (data) => {
+            document.getElementById('members-count').textContent = data.members;
+            if (data.username) {
+                addSystemMessage(`👋 ${data.username} left the Black Hole`);
+            }
+        });
+        
+        // ========== MESSAGES WITH TIMESTAMP FORMAT ==========
+        socket.on('chat message', (data) => {
+            // Use formattedUsername if available, otherwise create username --timestamp
+            const displayName = data.formattedUsername || `${data.username} --${data.timestamp || new Date().toLocaleTimeString()}`;
+            addMessage(displayName, data.message, data.rank, false);
+        });
+
+        socket.on('chat message self', (data) => {
+            // For your own messages, show the same format
+            const displayName = data.formattedUsername || `${data.username} --${data.timestamp || new Date().toLocaleTimeString()}`;
+            addMessage(displayName, data.message, data.rank, true);
+        });
+        
+        function addMessage(displayName, message, rank = 'member', isMine = false) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'msg-wrapper';
+            if (isMine) {
+                wrapper.classList.add('mine');
+            }
+            
+            const header = document.createElement('div');
+            header.className = 'msg-header';
+            header.innerHTML = `
+                <span class="msg-username">${displayName}</span>
+                ${rank !== 'member' && rank !== 'system' ? getRankBadge(rank) : ''}
+            `;
+            wrapper.appendChild(header);
+            
+            const item = document.createElement('div');
+            item.className = 'msg';
+            if (isMine) item.classList.add('mine');
+            if (message.startsWith('System:') || message.includes('System') || rank === 'system') {
+                item.classList.add('system');
+            }
+            item.textContent = message;
+            wrapper.appendChild(item);
+            
+            msgContainer.appendChild(wrapper);
+            msgContainer.scrollTop = msgContainer.scrollHeight;
+        }
+        
+        function addSystemMessage(message) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'msg-wrapper';
+            
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            const displayName = `System --${timeString}`;
+            
+            const header = document.createElement('div');
+            header.className = 'msg-header';
+            header.innerHTML = `<span class="msg-username">${displayName}</span>`;
+            wrapper.appendChild(header);
+            
+            const item = document.createElement('div');
+            item.className = 'msg system';
+            item.textContent = message;
+            wrapper.appendChild(item);
+            
+            msgContainer.appendChild(wrapper);
+            msgContainer.scrollTop = msgContainer.scrollHeight;
+        }
+        
+        function addPrivateMessage(from, message, to, timestamp) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'msg-wrapper';
+            
+            const timeString = timestamp || new Date().toLocaleTimeString();
+            const displayName = `${from} --${timeString}`;
+            
+            const header = document.createElement('div');
+            header.className = 'msg-header';
+            header.innerHTML = `
+                <span class="msg-username">💌 ${displayName} → ${to}</span>
+            `;
+            wrapper.appendChild(header);
+            
+            const item = document.createElement('div');
+            item.className = 'msg private';
+            item.textContent = message;
+            wrapper.appendChild(item);
+            
+            msgContainer.appendChild(wrapper);
+            msgContainer.scrollTop = msgContainer.scrollHeight;
+        }
+        
+        function addFileMessage(username, fileUrl, fileName, fileType) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'msg-wrapper';
+            if (username === currentUsername) wrapper.classList.add('mine');
+            
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            const displayName = `${username} --${timeString}`;
+            
+            const header = document.createElement('div');
+            header.className = 'msg-header';
+            header.innerHTML = `<span class="msg-username">${displayName}</span>`;
+            wrapper.appendChild(header);
+            
+            const item = document.createElement('div');
+            item.className = 'msg file-share';
+            item.onclick = () => window.open(fileUrl, '_blank');
+            
+            const fileIcon = fileType.startsWith('image/') ? '🖼️' : 
+                            fileType === 'application/pdf' ? '📕' : '📄';
+            
+            item.innerHTML = `
+                <div class="file-info">
+                    <span class="file-icon">${fileIcon}</span>
+                    <span class="file-name">${fileName}</span>
+                </div>
+            `;
+            wrapper.appendChild(item);
+            
+            msgContainer.appendChild(wrapper);
+            msgContainer.scrollTop = msgContainer.scrollHeight;
+        }
+        
+        function sendMessage() {
+            if (input.value.trim()) {
+                const messageText = input.value;
+                
+                if (messageText.startsWith('/')) {
+                    handleCommand(messageText);
+                    input.value = '';
+                    emojiPanel.classList.remove('show');
+                    return;
+                }
+                
+                socket.emit('chat message', { 
+                    username: currentUsername, 
+                    message: messageText 
+                });
+                
+                // Add your own message with timestamp
+                const now = new Date();
+                const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                const displayName = `${currentUsername} --${timeString}`;
+                addMessage(displayName, messageText, currentRank, true);
+                
+                input.value = '';
+                emojiPanel.classList.remove('show');
+            }
+        }
+        
+        // ========== PRIVATE MESSAGES ==========
+        function sendPrivateMessage() {
+            const recipient = document.getElementById('pmRecipient').value.trim();
+            const message = document.getElementById('pmMessage').value.trim();
+            
+            if (!recipient || !message) {
+                alert('Please enter recipient and message');
+                return;
+            }
+            
+            socket.emit('private_message', {
+                recipient,
+                message
+            });
+            
+            document.getElementById('pmMessage').value = '';
+            
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            addPrivateMessage(currentUsername, message, recipient, timeString);
+        }
+        
+        socket.on('private_message', (data) => {
+            addPrivateMessage(data.from, data.message, currentUsername, data.timestamp);
+            
+            // Update private messages list
+            const pmList = document.getElementById('privateMessagesList');
+            if (pmList) {
+                pmList.innerHTML += `
+                    <div style="padding: 10px; border-bottom: 1px solid #333;">
+                        <span style="color: #ff99ff;">💌 ${data.formattedFrom || data.from}</span>
+                        <div style="margin-top: 5px;">${data.message}</div>
+                    </div>
+                `;
+            }
+        });
+        
+        socket.on('private_message_sent', (data) => {
+            addSystemMessage(`💌 Private message sent to ${data.to} at ${data.timestamp}`);
+        });
+        
+        socket.on('admin_private_message_log', (data) => {
+            if (isAdmin || isOwner) {
+                addSystemMessage(`👮 ADMIN LOG: ${data.formattedLog || `${data.from} → ${data.to}: ${data.message}`}`);
+            }
+        });
+        
+        // ========== COMMANDS ==========
+        function handleCommand(commandText) {
+            const parts = commandText.split(' ');
+            const command = parts[0].toLowerCase();
+            const args = parts.slice(1);
+            
+            switch(command) {
+                case '/help':
+                    showHelp();
+                    break;
+                case '/msg':
+                    handleMsgCommand(args);
+                    break;
+                case '/clear':
+                    handleClearCommand(args);
+                    break;
+                case '/flip':
+                    handleFlipCommand();
+                    break;
+                case '/roll':
+                    handleRollCommand(args);
+                    break;
+                case '/ban':
+                    handleBanCommand(args);
+                    break;
+                case '/unban':
+                    handleUnbanCommand(args);
+                    break;
+                case '/delete':
+                    handleDeleteCommand(args);
+                    break;
+                case '/effect':
+                    handleEffectCommand(args);
+                    break;
+                case '/theme':
+                    handleThemeCommand(args);
+                    break;
+                case '/grant':
+                    handleGrantCommand(args);
+                    break;
+                case '/rank':
+                    handleRankCommand(args);
+                    break;
+                default:
+                    addSystemMessage(`❌ Unknown command: ${command}. Type /help for commands.`);
+            }
+        }
+        
+        function showHelp() {
+            let helpText = `🔹 **Black Hole CHAT V2 COMMANDS** 🔹\n\n`;
+            helpText += `⏱️ **All messages show: username --HH:MM:SS**\n\n`;
+            helpText += `💬 **Everyone:**\n`;
+            helpText += `  /msg <user> <text> - Send private message\n`;
+            helpText += `  /flip - Flip a coin\n`;
+            helpText += `  /roll <min> <max> - Roll random number\n\n`;
+            
+            if (isVip) {
+                helpText += `⭐ **VIP+ Commands:**\n`;
+                helpText += `  /theme <name> - Change theme (Black Hole, dark, neon, etc)\n`;
+                helpText += `  /file - Share files (click button)\n\n`;
+            }
+            
+            if (isModerator) {
+                helpText += `🛡️ **Moderator+ Commands:**\n`;
+                helpText += `  /clear - Clear all messages\n`;
+                helpText += `  /ban <user> <duration> - Ban user (10m, 1h, 1d)\n\n`;
+            }
+            
+            if (isAdmin) {
+                helpText += `👮 **Admin+ Commands:**\n`;
+                helpText += `  /unban <user> - Unban user\n`;
+                helpText += `  /delete <room> - Delete any room\n`;
+                helpText += `  /grant <user> <rank> - Grant mod/vip/member\n\n`;
+            }
+            
+            if (isOwner) {
+                helpText += `👑 **Owner Commands:**\n`;
+                helpText += `  /grant <user> admin - Grant admin rank\n\n`;
+            }
+            
+            if (isAdmin || isOwner) {
+                helpText += `🎮 **Effect Commands (Admin+):**\n`;
+                helpText += `  /effect glitch - Glitch effect\n`;
+                helpText += `  /effect flashbang - Flash effect\n`;
+                helpText += `  /effect black - Black screen\n`;
+                helpText += `  /effect hack - Hacker mode\n`;
+                helpText += `  /effect matrix - Matrix code rain\n`;
+                helpText += `  /effect rainbow - Rainbow mode\n`;
+                helpText += `  /effect neon - Neon pulse\n`;
+                helpText += `  /effect firework - Fireworks\n`;
+                helpText += `  /effect confetti - Confetti\n`;
+                helpText += `  /effect gameroom - Gamer mode\n`;
+            }
+            
+            addSystemMessage(helpText);
+        }
+        
+        function handleMsgCommand(args) {
+            if (args.length < 2) {
+                addSystemMessage('Usage: /msg <username> <message>');
+                return;
+            }
+            
+            const recipient = args[0];
+            const message = args.slice(1).join(' ');
+            
+            socket.emit('private_message', { recipient, message });
+        }
+        
+        function handleClearCommand(args) {
+            if (isModerator) {
+                socket.emit('clear_messages', { 
+                    roomName: currentRoom, 
+                    password: '' 
+                });
+            } else {
+                const password = args.join(' ');
+                socket.emit('clear_messages', { 
+                    roomName: currentRoom, 
+                    password 
+                });
+            }
+        }
+        
+        function handleFlipCommand() {
+            const result = Math.random() < 0.5 ? 'HEADS' : 'TAILS';
+            socket.emit('chat message', { 
+                username: 'System', 
+                message: `🪙 ${currentUsername} flipped a coin... ${result}!` 
+            });
+        }
+        
+        function handleRollCommand(args) {
+            if (args.length < 2) {
+                addSystemMessage('Usage: /roll <min> <max>');
+                return;
+            }
+            
+            const min = parseInt(args[0]);
+            const max = parseInt(args[1]);
+            
+            if (isNaN(min) || isNaN(max) || min >= max) {
+                addSystemMessage('Invalid range');
+                return;
+            }
+            
+            const result = Math.floor(Math.random() * (max - min + 1)) + min;
+            socket.emit('chat message', { 
+                username: 'System', 
+                message: `🎲 ${currentUsername} rolled... ${result}!` 
+            });
+        }
+        
+        function handleBanCommand(args) {
+            if (!isModerator && !isAdmin && !isOwner) {
+                addSystemMessage('❌ You do not have permission to ban users');
+                return;
+            }
+            
+            if (args.length < 1) {
+                addSystemMessage('Usage: /ban <username> [duration]');
+                return;
+            }
+            
+            const targetUser = args[0];
+            let duration = '10m';
+            
+            if (args.length >= 2 && /^\d+[hmd]?$/.test(args[1])) {
+                duration = args[1];
+            }
+            
+            socket.emit('ban_user', {
+                roomName: currentRoom,
+                bannedUser: targetUser,
+                duration,
+                bannerName: currentUsername,
+                password: ''
+            });
+        }
+        
+        function handleUnbanCommand(args) {
+            if (!isAdmin && !isOwner) {
+                addSystemMessage('❌ Only admins can unban users');
+                return;
+            }
+            
+            if (args.length < 1) {
+                addSystemMessage('Usage: /unban <username>');
+                return;
+            }
+            
+            socket.emit('unban_user', {
+                roomName: currentRoom,
+                unbannedUser: args[0],
+                unbannerName: currentUsername,
+                password: ''
+            });
+        }
+        
+        function handleDeleteCommand(args) {
+            if (!isAdmin && !isOwner) {
+                addSystemMessage('❌ Only admins can delete rooms');
+                return;
+            }
+            
+            if (args.length < 1) {
+                addSystemMessage('Usage: /delete <roomname>');
+                return;
+            }
+            
+            socket.emit('delete_room', {
+                roomName: args[0],
+                password: ''
+            });
+        }
+        
+        function handleEffectCommand(args) {
+            if (!isAdmin && !isOwner) {
+                addSystemMessage('❌ Only admins can use effects');
+                return;
+            }
+            
+            if (args.length < 1) {
+                addSystemMessage('Usage: /effect <name>');
+                return;
+            }
+            
+            const effect = args[0].toLowerCase();
+            socket.emit('effect_command', {
+                effect,
+                roomName: currentRoom
+            });
+        }
+        
+        function handleThemeCommand(args) {
+            if (!isVip) {
+                addSystemMessage('❌ VIP+ only can change themes');
+                return;
+            }
+            
+            if (args.length < 1) {
+                addSystemMessage('Usage: /theme <name>');
+                return;
+            }
+            
+            const theme = args[0].toLowerCase();
+            changeTheme(theme);
+            socket.emit('change_theme', {
+                theme,
+                scope: 'personal'
+            });
+        }
+        
+        function handleGrantCommand(args) {
+            if (!isAdmin && !isOwner) {
+                addSystemMessage('❌ Only admins can grant ranks');
+                return;
+            }
+            
+            if (args.length < 2) {
+                addSystemMessage('Usage: /grant <username> <rank>');
+                return;
+            }
+            
+            const targetUser = args[0];
+            const newRank = args[1].toLowerCase();
+            
+            const validRanks = isOwner ? ['admin', 'moderator', 'vip', 'member'] : ['moderator', 'vip', 'member'];
+            
+            if (!validRanks.includes(newRank)) {
+                addSystemMessage(`❌ You can only grant: ${validRanks.join(', ')}`);
+                return;
+            }
+            
+            socket.emit('grant_rank', {
+                targetUser,
+                newRank,
+                password: isOwner ? '' : prompt('Enter admin password:')
+            });
+        }
+        
+        function handleRankCommand(args) {
+            addSystemMessage(`Your rank: ${currentRank.toUpperCase()}`);
+        }
+        
+        // ========== EFFECTS ==========
+        socket.on('room_effect', (data) => {
+            addSystemMessage(`✨ ${data.triggeredBy} triggered effect: ${data.effect}`);
+            
+            // Remove existing effect classes
+            document.body.classList.remove('glitch', 'flashbang', 'black', 'hack', 'matrix', 
+                'rainbow', 'neon', 'firework', 'gameroom');
+            
+            switch(data.effect) {
+                case 'glitch':
+                    document.body.classList.add('glitch');
+                    setTimeout(() => document.body.classList.remove('glitch'), 5000);
+                    break;
+                case 'flashbang':
+                    document.body.classList.add('flashbang');
+                    setTimeout(() => document.body.classList.remove('flashbang'), 1000);
+                    break;
+                case 'black':
+                    document.body.classList.add('black');
+                    setTimeout(() => document.body.classList.remove('black'), 5000);
+                    break;
+                case 'hack':
+                    document.body.classList.add('hack');
+                    setTimeout(() => document.body.classList.remove('hack'), 10000);
+                    break;
+                case 'matrix':
+                    document.body.classList.add('matrix');
+                    setTimeout(() => document.body.classList.remove('matrix'), 10000);
+                    break;
+                case 'rainbow':
+                    document.body.classList.add('rainbow');
+                    setTimeout(() => document.body.classList.remove('rainbow'), 5000);
+                    break;
+                case 'neon':
+                    document.body.classList.add('neon');
+                    setTimeout(() => document.body.classList.remove('neon'), 5000);
+                    break;
+                case 'firework':
+                    document.body.classList.add('firework');
+                    setTimeout(() => document.body.classList.remove('firework'), 2000);
+                    break;
+                case 'gameroom':
+                    document.body.classList.add('gameroom');
+                    setTimeout(() => document.body.classList.remove('gameroom'), 10000);
+                    break;
+                case 'confetti':
+                    for (let i = 0; i < 100; i++) {
+                        createConfetti();
+                    }
+                    break;
+            }
+        });
+        
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            confetti.style.animationDelay = Math.random() * 2 + 's';
+            confetti.style.width = Math.random() * 10 + 5 + 'px';
+            confetti.style.height = Math.random() * 10 + 5 + 'px';
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 3000);
+        }
+        
+        // ========== THEMES ==========
+        function changeTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+            currentTheme = theme;
+            addSystemMessage(`🎨 Theme changed to: ${theme}`);
+        }
+        
+        // ========== MODALS ==========
+        function showModal(modalId) {
+            document.getElementById(modalId).classList.add('show');
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('show');
+        }
+        
+        function showUserList() {
+            showModal('userListModal');
+            document.getElementById('userListContent').innerHTML = `
+                <div style="text-align: center; color: #888; padding: 20px;">
+                    Loading users...
+                </div>
+            `;
+            
+            // Request user list from server
+            socket.emit('get_user_list', { roomName: currentRoom });
+        }
+        
+        function showPrivateMessages() {
+            showModal('privateMessagesModal');
+        }
+        
+        function grantRank() {
+            const username = document.getElementById('grantUsername').value.trim();
+            const rank = document.getElementById('grantRankSelect').value;
+            const password = document.getElementById('grantPassword').value;
+            
+            if (!username || !rank) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            socket.emit('grant_rank', {
+                targetUser: username,
+                newRank: rank,
+                password: isOwner ? '' : password
+            });
+            
+            closeModal('grantRankModal');
+            document.getElementById('grantUsername').value = '';
+            document.getElementById('grantPassword').value = '';
+        }
+        
+        // ========== ROOM MANAGEMENT ==========
+        function leaveRoom() {
+            if (isVoiceActive && voiceChat) {
+                voiceChat.stop();
+                isVoiceActive = false;
+            }
+            socket.emit('leave_room');
+            currentRoom = null;
+            roomScreen.style.display = 'flex';
+            chatScreen.style.display = 'none';
+            loadRooms();
+        }
+        
+        // ========== SOCKET EVENT HANDLERS ==========
+        socket.on('error', (data) => {
+            alert('❌ ' + data.message);
+        });
+        
+        socket.on('command_error', (data) => {
+            addSystemMessage('❌ ' + data.message);
+        });
+        
+        socket.on('command_success', (data) => {
+            addSystemMessage('✅ ' + data.message);
+        });
+        
+        socket.on('messages_cleared', () => {
+            msgContainer.innerHTML = '';
+            addSystemMessage('🧹 All messages cleared');
+        });
+        
+        socket.on('user_banned', (data) => {
+            if (data.bannedUser === currentUsername) {
+                addSystemMessage(`⛔ You have been banned for ${data.duration || '10m'}`);
+                setTimeout(() => leaveRoom(), 2000);
+            }
+        });
+        
+        socket.on('user_unbanned', (data) => {
+            addSystemMessage(`✅ ${data.unbannedUser} unbanned by ${data.unbannerName}`);
+        });
+        
+        socket.on('force_leave', (data) => {
+            if (data.reason === 'banned') {
+                addSystemMessage('⛔ You have been banned from this room');
+                setTimeout(() => leaveRoom(), 1000);
+            }
+        });
+        
+        socket.on('room_deleted_by_owner', (data) => {
+            addSystemMessage(`🗑️ Room "${data.roomName}" has been deleted`);
+            if (currentRoom === data.roomName) {
+                setTimeout(() => leaveRoom(), 2000);
+            }
+        });
+        
+        socket.on('theme_applied', (data) => {
+            if (data.scope === 'room') {
+                addSystemMessage(`🎨 Room theme changed to ${data.theme} by ${data.changedBy}`);
+                document.body.setAttribute('data-theme', data.theme);
+                document.getElementById('room-theme-indicator').innerHTML = `🎨 ${data.theme}`;
+            }
+        });
+        
+        socket.on('system_notification', (data) => {
+            addSystemMessage(data.message);
+        });
+        
+        socket.on('user_list', (data) => {
+            const content = document.getElementById('userListContent');
+            if (!content) return;
+            
+            let html = '';
+            data.users.forEach(user => {
+                html += `
+                    <div class="user-list-item">
+                        <div class="user-info-modal">
+                            <span>${user.username}</span>
+                            ${getRankBadge(user.rank)}
+                            ${user.isOnline ? '<span style="color: #4ade80;">●</span>' : '<span style="color: #888;">○</span>'}
+                        </div>
+                        <div class="user-actions">
+                            <button onclick="openPrivateMessage('${user.username}')" class="action-btn" style="padding: 4px 8px; font-size: 12px;">💌</button>
+                            ${isAdmin ? `<button onclick="banUser('${user.username}')" class="action-btn danger" style="padding: 4px 8px; font-size: 12px;">🔨</button>` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            content.innerHTML = html || '<div style="text-align: center; color: #888; padding: 20px;">No users in room</div>';
+        });
+        
+        // ========== UTILITY FUNCTIONS ==========
+        function openPrivateMessage(username) {
+            closeModal('userListModal');
+            showModal('privateMessagesModal');
+            document.getElementById('pmRecipient').value = username;
+            document.getElementById('pmMessage').focus();
+        }
+        
+        function banUser(username) {
+            if (confirm(`Ban ${username}?`)) {
+                const duration = prompt('Duration? (10m, 1h, 1d)', '10m');
+                if (duration) {
+                    socket.emit('ban_user', {
+                        roomName: currentRoom,
+                        bannedUser: username,
+                        duration,
+                        bannerName: currentUsername,
+                        password: ''
+                    });
+                }
+            }
+            closeModal('userListModal');
+        }
+        
+        // ========== UI EVENT LISTENERS ==========
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.emoji-btn') && !e.target.closest('.emoji-panel')) {
+                emojiPanel.classList.remove('show');
+            }
+        });
+        
+        // Auth form keyboard events
+        document.getElementById('loginUsername').addEventListener('keypress', (e) => { 
+            if (e.key === 'Enter') handleLogin(); 
+        });
+        document.getElementById('loginPassword').addEventListener('keypress', (e) => { 
+            if (e.key === 'Enter') handleLogin(); 
+        });
+        document.getElementById('regUsername').addEventListener('keypress', (e) => { 
+            if (e.key === 'Enter') handleRegister(); 
+        });
+        document.getElementById('regPassword').addEventListener('keypress', (e) => { 
+            if (e.key === 'Enter') handleRegister(); 
+        });
+        document.getElementById('regConfirmPassword').addEventListener('keypress', (e) => { 
+            if (e.key === 'Enter') handleRegister(); 
+        });
+        
+        // ========== INITIAL CONNECTION ==========
+        socket.on('connect', () => {
+            console.log('✅ Connected to Black Hole Chat V2');
+            socket.emit('check_auth');
+        });
+        
+        socket.on('auth_status', (data) => {
+            if (data.authenticated) {
+                currentUsername = data.username;
+                updateRankUI(data.rank);
+                loggedInUsernameDisplay.textContent = data.username;
+                usernameDisplay.textContent = data.username;
+                authScreen.style.display = 'none';
+                roomScreen.style.display = 'flex';
+                loadRooms();
+                
+                if (data.theme) {
+                    changeTheme(data.theme);
+                }
+            } else {
+                authScreen.style.display = 'flex';
+                roomScreen.style.display = 'none';
+                chatScreen.style.display = 'none';
+            }
+        });
+        
+        socket.on('disconnect', () => {
+            addSystemMessage('⚠️ Disconnected from Black Hole. Reconnecting...');
+        });
+
+        // Add missing socket event handlers
+        socket.on('get_user_list', (data) => {
+            // Request user list from server
+            socket.emit('get_user_list', { roomName: currentRoom });
+        });
+
+        // Initialize theme
+        changeTheme('Black Hole');
+    </script>
+</body>
+</html>
+
